@@ -4,11 +4,10 @@ const sound = document.getElementById('sound');
 const btn = document.getElementById('search-btn');
 
 btn.addEventListener('click', () => {
-  let inpWord = document.getElementById('inp-word').value;
+  const inpWord = document.getElementById('inp-word').value;
   fetch(`${url}${inpWord}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       result.innerHTML = `
       <div class="word">
           <h3>${inpWord}</h3>
@@ -30,7 +29,7 @@ btn.addEventListener('click', () => {
       sound.setAttribute('src', `${data[0].phonetics[1].audio}`);
     })
     .catch(() => {
-      result.innerHTML = `<h3 class='error'>Couldn't Find The Word</h3>`;
+      result.innerHTML = "<h3 class='error'>Couldn't Find The Word</h3>";
     });
 });
 function playSound() {
